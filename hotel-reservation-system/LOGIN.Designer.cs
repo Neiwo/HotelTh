@@ -38,6 +38,7 @@
             this.gunaButton1 = new Guna.UI.WinForms.GunaButton();
             this.gunaLinkLabel1 = new Guna.UI.WinForms.GunaLinkLabel();
             this.gunaLabel3 = new Guna.UI.WinForms.GunaLabel();
+            this.gunaAdvenceButton1 = new Guna.UI.WinForms.GunaAdvenceButton();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -158,7 +159,7 @@
             this.gunaLinkLabel1.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.gunaLinkLabel1.AutoSize = true;
             this.gunaLinkLabel1.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaLinkLabel1.LinkColor = System.Drawing.Color.Black;
+            this.gunaLinkLabel1.LinkColor = System.Drawing.Color.Navy;
             this.gunaLinkLabel1.Location = new System.Drawing.Point(244, 443);
             this.gunaLinkLabel1.Name = "gunaLinkLabel1";
             this.gunaLinkLabel1.Size = new System.Drawing.Size(100, 18);
@@ -177,12 +178,48 @@
             this.gunaLabel3.TabIndex = 8;
             this.gunaLabel3.Text = "don\'t have an account?";
             // 
+            // gunaAdvenceButton1
+            // 
+            this.gunaAdvenceButton1.AnimationHoverSpeed = 0.07F;
+            this.gunaAdvenceButton1.AnimationSpeed = 0.03F;
+            this.gunaAdvenceButton1.BackColor = System.Drawing.Color.Transparent;
+            this.gunaAdvenceButton1.BaseColor = System.Drawing.Color.Firebrick;
+            this.gunaAdvenceButton1.BorderColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton1.CheckedBaseColor = System.Drawing.Color.IndianRed;
+            this.gunaAdvenceButton1.CheckedBorderColor = System.Drawing.Color.Transparent;
+            this.gunaAdvenceButton1.CheckedForeColor = System.Drawing.Color.White;
+            this.gunaAdvenceButton1.CheckedImage = null;
+            this.gunaAdvenceButton1.CheckedLineColor = System.Drawing.Color.Transparent;
+            this.gunaAdvenceButton1.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaAdvenceButton1.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaAdvenceButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gunaAdvenceButton1.ForeColor = System.Drawing.Color.White;
+            this.gunaAdvenceButton1.Image = null;
+            this.gunaAdvenceButton1.ImageSize = new System.Drawing.Size(20, 20);
+            this.gunaAdvenceButton1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
+            this.gunaAdvenceButton1.Location = new System.Drawing.Point(12, 12);
+            this.gunaAdvenceButton1.Name = "gunaAdvenceButton1";
+            this.gunaAdvenceButton1.OnHoverBaseColor = System.Drawing.Color.IndianRed;
+            this.gunaAdvenceButton1.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.gunaAdvenceButton1.OnHoverForeColor = System.Drawing.Color.White;
+            this.gunaAdvenceButton1.OnHoverImage = null;
+            this.gunaAdvenceButton1.OnHoverLineColor = System.Drawing.Color.Transparent;
+            this.gunaAdvenceButton1.OnPressedColor = System.Drawing.Color.IndianRed;
+            this.gunaAdvenceButton1.OnPressedDepth = 50;
+            this.gunaAdvenceButton1.Radius = 5;
+            this.gunaAdvenceButton1.Size = new System.Drawing.Size(30, 30);
+            this.gunaAdvenceButton1.TabIndex = 9;
+            this.gunaAdvenceButton1.Text = "X";
+            this.gunaAdvenceButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.gunaAdvenceButton1.Click += new System.EventHandler(this.gunaAdvenceButton1_Click);
+            // 
             // LOGIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(1018, 521);
+            this.Controls.Add(this.gunaAdvenceButton1);
             this.Controls.Add(this.gunaLabel3);
             this.Controls.Add(this.gunaLinkLabel1);
             this.Controls.Add(this.gunaButton1);
@@ -192,10 +229,12 @@
             this.Controls.Add(this.gunaLabel1);
             this.Controls.Add(this.gunaPictureBox2);
             this.Controls.Add(this.gunaPictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LOGIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LOGIN FORM";
+            this.Load += new System.EventHandler(this.LOGIN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -214,6 +253,7 @@
         private Guna.UI.WinForms.GunaButton gunaButton1;
         private Guna.UI.WinForms.GunaLinkLabel gunaLinkLabel1;
         private Guna.UI.WinForms.GunaLabel gunaLabel3;
+        private Guna.UI.WinForms.GunaAdvenceButton gunaAdvenceButton1;
     }
 }
 

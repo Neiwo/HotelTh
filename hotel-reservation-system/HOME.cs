@@ -54,7 +54,7 @@ namespace hotel_reservation_system
         // 1st button slideshow
         private void gunaButton8_Click_1(object sender, EventArgs e)
         {
-            string filePath = "C:\\Users\\bcaly\\OneDrive\\Desktop\\hotel rsvt - images\\1.png";
+            string filePath = "C:\\Users\\oween\\source\\repos\\hotel-reservation-system\\Resources\\1.png";
             Image image = Image.FromFile(filePath);
             gunaPictureBox9.Image = image;
         }
@@ -62,7 +62,7 @@ namespace hotel_reservation_system
         // 2nd button ng slideshow
         private void gunaButton9_Click(object sender, EventArgs e)
         {
-            string filePath = "C:\\Users\\bcaly\\OneDrive\\Desktop\\hotel rsvt - images\\2.png";
+            string filePath = "C:\\Users\\oween\\source\\repos\\hotel-reservation-system\\Resources\\2.png";
             Image image = Image.FromFile(filePath);
             gunaPictureBox9.Image = image;
         }
@@ -70,7 +70,7 @@ namespace hotel_reservation_system
         // 3rd button ng slideshow
         private void gunaButton10_Click(object sender, EventArgs e)
         {
-            string filePath = "C:\\Users\\bcaly\\OneDrive\\Desktop\\hotel rsvt - images\\3.png";
+            string filePath = "C:\\Users\\oween\\source\\repos\\hotel-reservation-system\\Resources\\3.png";
             Image image = Image.FromFile(filePath);
             gunaPictureBox9.Image = image;
 

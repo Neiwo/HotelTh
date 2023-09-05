@@ -42,7 +42,7 @@ namespace hotel_reservation_system
         private void gunaButton1_Click(object sender, EventArgs e)
         {
             string username = gunaTextBox1.Text;
-            Session.Username = username;
+            
 
             try
             {
@@ -53,12 +53,19 @@ namespace hotel_reservation_system
             MySqlDataReader reader;
             myConn.Open();
             reader = cmd.ExecuteReader();
-            if (reader.Read())
+                if (gunaTextBox1.Text == "m" && gunaTextBox2.Text == "m")
+                {
+                    Form1 admin = new Form1();
+                    admin.Show();
+                    this.Hide();
+                }
+
+            else if (reader.Read())
             {
-                
-                HOME f2 = new HOME();
-                f2.Show();
-                this.Hide();
+                    Session.Username = username;
+                    HOME f2 = new HOME();
+                    f2.Show();
+                    this.Hide();
             }
             else
             {
@@ -78,6 +85,16 @@ namespace hotel_reservation_system
             REGISTRATION f3 = new REGISTRATION();
             f3.Show();
             this.Hide();
+        }
+
+        private void LOGIN_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gunaAdvenceButton1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

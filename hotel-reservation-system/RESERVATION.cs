@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using static hotel_reservation_system.LOGIN;
 
 namespace hotel_reservation_system
 {
@@ -16,10 +17,10 @@ namespace hotel_reservation_system
         public RESERVATION()
         {
             InitializeComponent();
-            Load();
+            load();
         }
         
-        void Load()
+        void load()
         {
             string constring = "datasource=localhost; database=hotelth; port=3306; username=root; password=;";
             MySqlConnection conn = new MySqlConnection(constring);
@@ -68,19 +69,40 @@ namespace hotel_reservation_system
 
         // cancel reservation button
         private void gunaButton4_Click(object sender, EventArgs e)
+
         {
+            string MyConnection = "datasource=localhost; database=hotelth; port=3306; username=root; password=;";
+            MySqlConnection myConn = new MySqlConnection(MyConnection);
+            string usertoguest = Session.Username;
+            int guestID = 0;
+            string query = "SELECT GuestID FROM guest WHERE username = @usertoguest";
+            using (MySqlCommand cmd = new MySqlCommand(query, myConn))
+            {
+                cmd.Parameters.AddWithValue("@usertoguest", usertoguest);
+
+                myConn.Open();
+                object lol = cmd.ExecuteScalar();
+
+                if (lol != null)
+                {
+                    guestID = Convert.ToInt32(lol);
+                }
+                myConn.Close();
+
+            }
+            int ges = guestID;
             DialogResult result = MessageBox.Show("Do you want to cancel your reservation?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 try
                 {
                     string myConnection = "datasource=localhost; database=hotelth; port=3306; username=root; password=;";
-                    string query = "delete from reservation where reservationID = chuchu";
+                    string query1 = "delete from reservation where reservationNo = @ges";
                     MySqlConnection myconn = new MySqlConnection(myConnection);
-                    MySqlCommand cmd = new MySqlCommand(query, myconn);
+                    MySqlCommand cmds = new MySqlCommand(query1, myconn);
                     MySqlDataReader reader;
                     myconn.Open();
-                    reader = cmd.ExecuteReader();
+                    reader = cmds.ExecuteReader();
                     if (reader.Read())
                     {
                         MessageBox.Show("Successfully booked!");
@@ -109,6 +131,11 @@ namespace hotel_reservation_system
             HOME f2 = new HOME();
             f2.Show();
             this.Hide();
+        }
+
+        private void RESERVATION_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
