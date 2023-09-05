@@ -1,29 +1,30 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static hotel_reservation_system.LOGIN;
 
 namespace hotel_reservation_system
 {
     public partial class BOOKING : Form
     {
-
-        private string selectedRoomID = "";
+        
 
         public BOOKING()
         {
             InitializeComponent();
             load();
-            gunaDataGridView1.SelectionMode = D ataGridViewSelectionMode.FullRowSelect;
-            string username = Session.Username;
-         }
-
+            gunaDataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
         void load()
         {
             string constring = "datasource=localhost; database=hotelth; port=3306; username=root; password=;";
@@ -94,30 +95,96 @@ namespace hotel_reservation_system
         // confirm booking button
         private void gunaButton4_Click(object sender, EventArgs e)
         {
-            string MyConnection = "datasource=localhost; database=hotelth; port=3306; username=root; password=;";
-            string query = "select GuestID from guest where username = '"+gunaTextBox1+"'";
-            string query2 = " insert into reservation(GuesID, RoomNo, CheckinDate, CheckoutDate) values (@retGuestID,'" + RoomID.Text + "', '" + CheckIn.Text + "', '" + CheckOut.Text + "')";
-            MySqlConnection myConn = new MySqlConnection(MyConnection);
-            MySqlCommand wews = new MySqlCommand(query2, myConn);
-            MySqlCommand cmd = new MySqlCommand(query, myConn);
-            MySqlDataReader reader;
-            try
-            {
-                myConn.Open();
-                reader = cmd.ExecuteReader();
-                MessageBox.Show("GuestID retrieved!");
-                myConn.Close();
 
-                myConn.Open();
-                //int GIDfromdb = Convert.ToInt32(cmd.ExecuteScalar());
-                //string retGuestID = GIDfromdb.ToString(); 
-                reader = wews.ExecuteReader();
-                MessageBox.Show("yey");
-                myConn.Close();
-            }
-            catch (Exception ex)
-            { 
-                MessageBox.Show(ex.Message);
+
+            string MyConnection = "datasource=localhost; database=hotelth; port=3306; username=root; password=;";
+            using (MySqlConnection myConn = new MySqlConnection(MyConnection))
+            {
+                string usertoguest = Session.Username;
+                int guestID = 0;
+                string query = "SELECT GuestID FROM guest WHERE username = @usertoguest";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, myConn))
+                {
+                    cmd.Parameters.AddWithValue("@usertoguest", usertoguest);
+
+                    try
+                    {
+                        myConn.Open();
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            guestID = Convert.ToInt32(result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return; // Exit the method if there's an error.
+                    }
+                }
+
+                string RoomNo = RoomID.Text; // Replace with the actual TextBox name
+                string checkinDate = check1.Text; // Replace with the actual TextBox name
+                string checkoutDate = check2.Text; // Replace with the actual TextBox name
+
+                string insertQuery = "INSERT INTO reservation (GuesID, RoomNo, CheckinDate, CheckoutDate) " +
+                                     "VALUES (@guestID, @roomNo, @checkinDate, @checkoutDate)";
+
+                using (MySqlCommand wews = new MySqlCommand(insertQuery, myConn))
+                {
+                    wews.Parameters.AddWithValue("@guestID", guestID);
+                    wews.Parameters.AddWithValue("@roomNo", RoomNo);
+                    wews.Parameters.AddWithValue("@checkinDate", checkinDate);
+                    wews.Parameters.AddWithValue("@checkoutDate", checkoutDate);
+
+                    try
+                    {
+                     
+                        int rowsAffected = wews.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("RESERVATION COMPLETE");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Reservation failed.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+
+                // Update room status to 'Occupied'
+                string updateQuery = "UPDATE room SET Occupied = 'YES' WHERE RoomNo = @roomNo";
+
+                using (MySqlCommand wew1 = new MySqlCommand(updateQuery, myConn))
+                {
+                    wew1.Parameters.AddWithValue("@roomNo", RoomNo);
+
+                    try
+                    {
+                        int rowsAffected = wew1.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            // Update successful
+                        }
+                        else
+                        {
+                            // Update failed
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    myConn.Close();
+                }
             }
         }
 
@@ -128,12 +195,12 @@ namespace hotel_reservation_system
         // check in
         private void gunaDateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            CINDATE.Text = gunaDateTimePicker1.Value.ToString();
+   
         }
         // check out 
         private void gunaDateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            COUTDATE.Text = gunaDateTimePicker2.Value.ToString();
+     
         }
 
         private void gunaDataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
@@ -146,6 +213,38 @@ namespace hotel_reservation_system
                 Capacity.Text = gunaDataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
                 Price.Text = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             }
+        }
+
+        private void gunaPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void CINDATE_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gunaTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chckindate_ValueChanged(object sender, EventArgs e)
+        {
+            string chk1 = chckindate.Text;
+            check1.Text = chk1;
+        }
+
+        private void chckoutdate_ValueChanged(object sender, EventArgs e)
+        {
+            string chk2 = chckoutdate.Text;
+            check2.Text = chk2;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
     }

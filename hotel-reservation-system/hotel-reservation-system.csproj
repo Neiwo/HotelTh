@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="LOGIN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,8 +105,59 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ucontrol\UC_ADDMIN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ucontrol\UC_ADDMIN.Designer.cs">
+      <DependentUpon>UC_ADDMIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ucontrol\UC_ADDROOM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ucontrol\UC_ADDROOM.Designer.cs">
+      <DependentUpon>UC_ADDROOM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ucontrol\UC_CHECKOUT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ucontrol\UC_CHECKOUT.Designer.cs">
+      <DependentUpon>UC_CHECKOUT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ucontrol\UC_DELETECLERK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ucontrol\UC_DELETECLERK.Designer.cs">
+      <DependentUpon>UC_DELETECLERK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ucontrol\UC_EMPACCOUNTS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ucontrol\UC_EMPACCOUNTS.Designer.cs">
+      <DependentUpon>UC_EMPACCOUNTS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ucontrol\UC_GUESTACCOUNTS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ucontrol\UC_GUESTACCOUNTS.Designer.cs">
+      <DependentUpon>UC_GUESTACCOUNTS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ucontrol\UC_PROFILES.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ucontrol\UC_PROFILES.Designer.cs">
+      <DependentUpon>UC_PROFILES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ucontrol\UC_RESERVATION.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ucontrol\UC_RESERVATION.Designer.cs">
+      <DependentUpon>UC_RESERVATION.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ACCOUNT.resx">
       <DependentUpon>ACCOUNT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LOGIN.resx">
       <DependentUpon>LOGIN.cs</DependentUpon>
@@ -130,6 +187,30 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Ucontrol\UC_ADDMIN.resx">
+      <DependentUpon>UC_ADDMIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ucontrol\UC_ADDROOM.resx">
+      <DependentUpon>UC_ADDROOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ucontrol\UC_CHECKOUT.resx">
+      <DependentUpon>UC_CHECKOUT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ucontrol\UC_DELETECLERK.resx">
+      <DependentUpon>UC_DELETECLERK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ucontrol\UC_EMPACCOUNTS.resx">
+      <DependentUpon>UC_EMPACCOUNTS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ucontrol\UC_GUESTACCOUNTS.resx">
+      <DependentUpon>UC_GUESTACCOUNTS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ucontrol\UC_PROFILES.resx">
+      <DependentUpon>UC_PROFILES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ucontrol\UC_RESERVATION.resx">
+      <DependentUpon>UC_RESERVATION.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
